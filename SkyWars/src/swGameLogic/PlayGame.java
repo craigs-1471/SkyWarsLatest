@@ -3,6 +3,7 @@ package swGameLogic;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 import swGameData.DataHandling;
@@ -25,12 +26,14 @@ public class PlayGame {
 	private static boolean masterShipOffensive;
 	private static boolean hardMode;
 	private static String usersName;
+	private static int shipsCurrentlyInPlay;
 	
 	public static void playGame() {
+		String output = "Please enter your name: ";
+		String defaultUsersName = "User";
+		usersName = JOptionPane.showInputDialog(output, defaultUsersName);
 		initialiseVariables();
-		gridList.displayNumberOfShipsOnEachTile();
 		gridList.clearGridList();
-		gridList.displayNumberOfShipsOnEachTile();
 		gridList.addPlayer(player);
 		RenderButtons.mapButtonGrid();
 	}
@@ -43,6 +46,8 @@ public class PlayGame {
 			RenderButtons.mapButtonGrid();
 			setUsersGo(true);
 		}
+		System.out.println("User name: " + usersName);
+		System.out.println("Goes taken: " + goesTaken + ", Ships destroyed: " + shipsDestroyed + ", Ships in play: " + shipsCurrentlyInPlay);
 	}
 	
 	public static void spawnEnemy() {
@@ -71,12 +76,12 @@ public class PlayGame {
 		rdbtnHardMode.setSelected(isHardMode());
 		shipsDestroyed = 0;
 		goesTaken = 0;
+		shipsCurrentlyInPlay = 0;
 	}
 	
 	public static void loadGameData(SaveData save) {
-		System.out.println("pre load gridlist");
 		gridList = DataHandling.loadGridList(save);
-		System.out.println("pre loadplayer");
+		shipsCurrentlyInPlay = gridList.getEnemies().size();
 		player = save.getPlayer();
 		gameOver = false;
 		usersGo = true;
@@ -84,6 +89,7 @@ public class PlayGame {
 		hardMode = save.isHardMode();
 		shipsDestroyed = save.getShipsDestroyed();
 		goesTaken = save.getGoesTaken();
+		usersName = save.getUsersName();
 		RenderButtons.mapButtonGrid();
 	}
 	
@@ -91,7 +97,18 @@ public class PlayGame {
 	
 	public static void destroyShip() {
 		PlayGame.shipsDestroyed++;
-		System.out.println("Ships destroyed " + shipsDestroyed);
+	}
+	
+	public static void goTaken() {
+		PlayGame.goesTaken++;
+	}
+	
+	public static void addShipToPlay() {
+		shipsCurrentlyInPlay++;
+	}
+	
+	public static void removeShipFromPlay() {
+		shipsCurrentlyInPlay--;
 	}
 	
 	public static GridList getGridList() {
@@ -168,5 +185,13 @@ public class PlayGame {
 
 	public static int getGridLength() {
 		return GRID_LENGTH;
+	}
+
+	public static int getShipsCurrentlyInPlay() {
+		return shipsCurrentlyInPlay;
+	}
+
+	public static void setShipsCurrentlyInPlay(int shipsCurrentlyInPlay) {
+		PlayGame.shipsCurrentlyInPlay = shipsCurrentlyInPlay;
 	}
 }

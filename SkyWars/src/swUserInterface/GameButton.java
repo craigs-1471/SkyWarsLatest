@@ -40,6 +40,7 @@ public class GameButton extends JButton implements ActionListener{
 		boolean isUsersGo = PlayGame.isUsersGo();
 		boolean isGameOver = PlayGame.isGameOver();
 		if(isMovePossible && isUsersGo && !isGameOver) {
+			PlayGame.goTaken();
 			PlayGame.setUsersGo(false);
 			GridList gridList = PlayGame.getGridList();
 			gridList.movePlayer(player, btnIndex);

@@ -79,6 +79,7 @@ public class GridList implements Observable {
 			if(isEnemy) {
 				ship.setDestroyed(true);
 				PlayGame.destroyShip();
+				PlayGame.removeShipFromPlay();
 				shipsToBeRemoved.add(ship);
 				enemies.remove(ship);
 			}
@@ -156,6 +157,7 @@ public class GridList implements Observable {
 		int typesOfShip = 3;
 		Random numGenerator = new Random();
 		int randomNumber = numGenerator.nextInt(typesOfShip);
+		PlayGame.addShipToPlay();
 		if(randomNumber == 0) {
 			Spaceship newShip = new BattleStar();
 			addNewSpaceship(newShip);
