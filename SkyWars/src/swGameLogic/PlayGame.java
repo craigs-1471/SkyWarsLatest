@@ -1,6 +1,7 @@
 package swGameLogic;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JRadioButton;
 
@@ -28,6 +29,23 @@ public class PlayGame {
 		initialiseVariables();
 		gridList.addPlayer(player);
 		RenderButtons.mapButtonGrid();
+	}
+	
+	public static void computersGo() {
+		spawnEnemy();
+		RenderButtons.mapButtonGrid();
+		setUsersGo(true);
+		
+	}
+	
+	public static void spawnEnemy() {
+		int oddsOfEnemySpawn = 3;
+		Random numGenerator = new Random();
+		int randomNumber = numGenerator.nextInt(oddsOfEnemySpawn);
+		System.out.println("Should enemy spawn " + randomNumber);
+		if(randomNumber == 0) {
+			gridList.createNewSpaceship();
+		}
 	}
 	
 	public static void initialiseVariables() {

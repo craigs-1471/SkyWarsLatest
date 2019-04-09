@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import swInterfaces.Observable;
+import swSpaceships.BattleCruiser;
+import swSpaceships.BattleShooter;
+import swSpaceships.BattleStar;
 import swSpaceships.MasterShip;
 import swSpaceships.Spaceship;
 
@@ -60,14 +63,29 @@ public class GridList implements Observable {
 	}
 
 	@Override
-	public void addSpaceship() {
-		Spaceship newShip = createNewSpaceship();
+	public void addSpaceship(Spaceship newShip) {
 		gridList.get(ENEMY_START_LOCATION).getTileList().add(newShip);	
 		enemies.add(newShip);
 	}
 	
-	public Spaceship createNewSpaceship() {
-		return new Spaceship();
+	public void createNewSpaceship() {
+		System.out.println("Create ship start");
+		int typesOfShip = 3;
+		Random numGenerator = new Random();
+		int randomNumber = numGenerator.nextInt(typesOfShip);
+		System.out.println("Which ship " + randomNumber);
+		if(randomNumber == 0) {
+			Spaceship newShip = new BattleStar();
+			addSpaceship(newShip);
+		}
+		else if(randomNumber == 1) {
+			Spaceship newShip = new BattleCruiser();
+			addSpaceship(newShip);
+		}
+		else {
+			Spaceship newShip = new BattleShooter();
+			addSpaceship(newShip);
+		}
 	}
 	
 	public void displayNumberOfShipsOnEachTile() {

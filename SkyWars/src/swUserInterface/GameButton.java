@@ -34,11 +34,13 @@ public class GameButton extends JButton implements ActionListener{
 		boolean isUsersGo = PlayGame.isUsersGo();
 		boolean isGameOver = PlayGame.isGameOver();
 		if(isMovePossible && isUsersGo && !isGameOver) {
+			PlayGame.setUsersGo(false);
 			GridList gridList = PlayGame.getGridList();
 			gridList.displayNumberOfShipsOnEachTile();
 			gridList.movePlayer(player, btnIndex);
 			gridList.displayNumberOfShipsOnEachTile();
 			RenderButtons.mapButtonGrid();
+			PlayGame.computersGo();
 		}
 		
 	}

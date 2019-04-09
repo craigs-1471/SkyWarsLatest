@@ -6,6 +6,10 @@ import swInterfaces.NewShip;
 
 public class BattleCruiser extends Spaceship implements NewShip {
 	
+	public BattleCruiser() {
+		addNewShipType();
+	}
+	
 	@Override
 	public void addNewShipType() {
 		setShipType("Battle Cruiser");
