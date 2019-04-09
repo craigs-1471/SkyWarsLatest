@@ -90,6 +90,7 @@ public class GridList implements Observable {
 		for(int i = 0; i < GRID_LENGTH; i++) {
 			getGridList().get(i).getTileList().clear();
 		}
+		getEnemies().clear();
 	}
 	
 	@Override

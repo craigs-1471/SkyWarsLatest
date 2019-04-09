@@ -28,6 +28,9 @@ public class PlayGame {
 	
 	public static void playGame() {
 		initialiseVariables();
+		gridList.displayNumberOfShipsOnEachTile();
+		gridList.clearGridList();
+		gridList.displayNumberOfShipsOnEachTile();
 		gridList.addPlayer(player);
 		RenderButtons.mapButtonGrid();
 	}
