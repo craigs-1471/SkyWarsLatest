@@ -32,6 +32,7 @@ public class PlayGame {
 	}
 	
 	public static void computersGo() {
+		gridList.moveAllSpaceships();
 		spawnEnemy();
 		RenderButtons.mapButtonGrid();
 		setUsersGo(true);
@@ -42,7 +43,6 @@ public class PlayGame {
 		int oddsOfEnemySpawn = 3;
 		Random numGenerator = new Random();
 		int randomNumber = numGenerator.nextInt(oddsOfEnemySpawn);
-		System.out.println("Should enemy spawn " + randomNumber);
 		if(randomNumber == 0) {
 			gridList.createNewSpaceship();
 		}

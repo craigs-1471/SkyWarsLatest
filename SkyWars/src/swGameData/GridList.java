@@ -3,6 +3,7 @@ package swGameData;
 import java.util.ArrayList;
 import java.util.Random;
 
+import swGameLogic.PossibleGridMovements;
 import swInterfaces.Observable;
 import swSpaceships.BattleCruiser;
 import swSpaceships.BattleShooter;
@@ -27,9 +28,15 @@ public class GridList implements Observable {
 	
 	@Override
 	public void addPlayer(Spaceship player) {
-		int newLocation = getNewLocation();
+		int newLocation = getRandomLocation();
 		getGridList().get(newLocation).addShipToTile(player);
 		player.updateLocation(newLocation);
+	}
+	
+	public int getRandomLocation() {
+		Random numGenerator = new Random();
+		int randomLocation = numGenerator.nextInt(GRID_LENGTH);
+		return randomLocation;
 	}
 	
 	@Override
@@ -42,28 +49,36 @@ public class GridList implements Observable {
 	
 	@Override
 	public void moveAllSpaceships() {
-		for(Spaceship ship : enemies) {
-			moveSpaceship(ship);
+		System.out.println("Move all ships start");
+		if(!enemies.isEmpty()) {
+			for(Spaceship ship : enemies) {
+				moveSpaceship(ship);
+			}
 		}
 	}
 	
 	@Override
 	public void moveSpaceship(Spaceship ship) {
-		int newLocation = getNewLocation();
+		System.out.println("Move single ship start");
 		int currentLocation = ship.getCurrentLocation();
+		int newLocation = getNewLocation(currentLocation);
 		getGridList().get(currentLocation).removeShipFromTile(ship);
 		getGridList().get(newLocation).addShipToTile(ship);
 		ship.updateLocation(newLocation);
 	}
 	
-	public int getNewLocation() {
+	public int getNewLocation(int currentLocation) {
+		ArrayList<Integer> possibleMoves = PossibleGridMovements.getPossibleMoves(currentLocation);
+		int numberOfPossibleMoves = possibleMoves.size();
 		Random numGenerator = new Random();
-		int newLocation = numGenerator.nextInt(GRID_LENGTH);
+		int randomLocation = numGenerator.nextInt(numberOfPossibleMoves);
+		int newLocation = possibleMoves.get(randomLocation);
 		return newLocation;
 	}
 
 	@Override
 	public void addSpaceship(Spaceship newShip) {
+		System.out.println("Add ship start");
 		gridList.get(ENEMY_START_LOCATION).getTileList().add(newShip);	
 		enemies.add(newShip);
 	}
@@ -73,7 +88,6 @@ public class GridList implements Observable {
 		int typesOfShip = 3;
 		Random numGenerator = new Random();
 		int randomNumber = numGenerator.nextInt(typesOfShip);
-		System.out.println("Which ship " + randomNumber);
 		if(randomNumber == 0) {
 			Spaceship newShip = new BattleStar();
 			addSpaceship(newShip);
