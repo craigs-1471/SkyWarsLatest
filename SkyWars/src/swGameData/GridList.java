@@ -66,10 +66,9 @@ public class GridList implements Observable {
 		list.remove(player);
 		PlayGame.setGameOver(true);
 		PlayGame.setUsersGo(false);
+		PlayGame.getCurrentScore("Game Over");
 		RenderButtons.resetGrid();
 		clearGridList();
-		String output = "Game over";
-		JOptionPane.showMessageDialog(null, output, "Game Status", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void destroyAllEnemyShips(ArrayList<Spaceship> list) {

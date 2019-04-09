@@ -176,6 +176,15 @@ public class MainGui {
 		rdbtnEasyMode.setSelected(true);
 		rdbtnEasyMode.setBounds(304, 53, 127, 25);
 		pnlOptionsPanel.add(rdbtnEasyMode);
+		
+		JButton btnCurrentScore = new JButton("Score");
+		btnCurrentScore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PlayGame.getCurrentScore("Current Score");
+			}
+		});
+		btnCurrentScore.setBounds(122, 53, 97, 25);
+		pnlOptionsPanel.add(btnCurrentScore);
 	}
 
 	public JFrame getFrmSkyWars() {

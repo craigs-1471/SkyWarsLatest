@@ -50,6 +50,14 @@ public class PlayGame {
 		System.out.println("Goes taken: " + goesTaken + ", Ships destroyed: " + shipsDestroyed + ", Ships in play: " + shipsCurrentlyInPlay);
 	}
 	
+	public static void getCurrentScore(String gameStatus) {
+		String output;
+		output = "Users Name: " + usersName;
+		output += "\nGoes Taken: " + goesTaken;
+		output += "\nShips Destroyed: " + shipsDestroyed;
+		JOptionPane.showMessageDialog(null, output, gameStatus, JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public static void spawnEnemy() {
 		int oddsOfEnemySpawn = 3;
 		Random numGenerator = new Random();
