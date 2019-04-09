@@ -8,6 +8,7 @@ public class BattleCruiser extends Spaceship implements NewShip {
 	
 	public BattleCruiser() {
 		addNewShipType();
+		setEnemy(true);
 	}
 	
 	@Override

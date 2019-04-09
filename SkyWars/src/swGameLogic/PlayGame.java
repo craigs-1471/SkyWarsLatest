@@ -16,7 +16,6 @@ public class PlayGame {
 	private static final int GRID_LENGTH = 16;
 	private static GridList gridList;
 	private static Spaceship player;
-	private static ArrayList<Spaceship> enemies;
 	private static boolean gameOver;
 	private static boolean usersGo;
 	private static int shipsDestroyed;
@@ -32,11 +31,13 @@ public class PlayGame {
 	}
 	
 	public static void computersGo() {
-		gridList.moveAllSpaceships();
-		spawnEnemy();
-		RenderButtons.mapButtonGrid();
-		setUsersGo(true);
-		
+		if(!gameOver) {
+			gridList.moveAllSpaceships();
+			spawnEnemy();
+			gridList.checkForEngagement(player);
+			RenderButtons.mapButtonGrid();
+			setUsersGo(true);
+		}
 	}
 	
 	public static void spawnEnemy() {
@@ -67,10 +68,12 @@ public class PlayGame {
 		goesTaken = 0;
 	}
 	
-	
-	
-	
 	///////////GETTERS AND SETTERS/////////////////////////////////
+	
+	public static void destroyShip() {
+		PlayGame.shipsDestroyed++;
+		System.out.println("Ships destroyed " + shipsDestroyed);
+	}
 	
 	public static GridList getGridList() {
 		return gridList;
@@ -86,14 +89,6 @@ public class PlayGame {
 
 	public static void setPlayer(Spaceship player) {
 		PlayGame.player = player;
-	}
-
-	public static ArrayList<Spaceship> getEnemies() {
-		return enemies;
-	}
-
-	public static void setEnemies(ArrayList<Spaceship> enemies) {
-		PlayGame.enemies = enemies;
 	}
 
 	public static boolean isGameOver() {

@@ -133,7 +133,7 @@ public class MainGui {
 		rdbtnOffensive = new JRadioButton("Offensive");
 		rdbtnOffensive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.setMasterShipOffensive(true);
+				PlayGame.setMasterShipOffensive(true);
 			}
 		});
 		buttonGroup.add(rdbtnOffensive);
@@ -143,7 +143,7 @@ public class MainGui {
 		rdbtnDefensive = new JRadioButton("Defensive");
 		rdbtnDefensive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.setMasterShipOffensive(false);
+				PlayGame.setMasterShipOffensive(false);
 			}
 		});
 		rdbtnDefensive.setSelected(true);
@@ -159,7 +159,7 @@ public class MainGui {
 		buttonGroup_1.add(rdbtnHardMode);
 		rdbtnHardMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.setHardMode(true);
+				PlayGame.setHardMode(true);
 			}
 		});
 		rdbtnHardMode.setBounds(304, 31, 127, 25);
@@ -169,7 +169,7 @@ public class MainGui {
 		buttonGroup_1.add(rdbtnEasyMode);
 		rdbtnEasyMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.setHardMode(false);
+				PlayGame.setHardMode(false);
 			}
 		});
 		rdbtnEasyMode.setSelected(true);

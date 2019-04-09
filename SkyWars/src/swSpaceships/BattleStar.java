@@ -8,6 +8,7 @@ public class BattleStar extends Spaceship implements NewShip {
 	
 	public BattleStar() {
 		addNewShipType();
+		setEnemy(true);
 	}
 	
 	@Override

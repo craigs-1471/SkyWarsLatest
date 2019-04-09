@@ -8,6 +8,7 @@ public class MasterShip extends Spaceship implements NewShip {
 	
 	public MasterShip() {
 		addNewShipType();
+		setEnemy(false);
 	}
 	
 	@Override

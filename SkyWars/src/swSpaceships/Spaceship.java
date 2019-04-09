@@ -11,6 +11,7 @@ public abstract class Spaceship implements Observer {
 	private ImageIcon img;
 	private int currentLocation;
 	private boolean isDestroyed;
+	private boolean isEnemy;
 	
 	public Spaceship() {
 		setDestroyed(false);
@@ -51,6 +52,14 @@ public abstract class Spaceship implements Observer {
 
 	public void setDestroyed(boolean isDestroyed) {
 		this.isDestroyed = isDestroyed;
+	}
+	
+	public boolean isEnemy() {
+		return isEnemy;
+	}
+
+	public void setEnemy(boolean isEnemy) {
+		this.isEnemy = isEnemy;
 	}
 
 	@Override

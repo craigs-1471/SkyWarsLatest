@@ -23,10 +23,16 @@ public class RenderButtons {
 			list = gridList.getGridList().get(i).getTileList();
 			if(!list.isEmpty()) {
 				if(checkForInstanceOfPlayer(list)) {
-					buttonList.get(i).setTileBackground(player.getImg());
+					buttonList.get(i).setBackgroundMasterShip();
 				}
-				else {
-					buttonList.get(i).setTileBackground(list.get(i).getImg());
+				else if(checkForInstanceOfBattleCruiser(list)) {
+					buttonList.get(i).setBackgroundBattleCruiser();
+				}
+				else if(checkForInstanceOfBattleStar(list)) {
+					buttonList.get(i).setBackgroundBattleStar();
+				}
+				else if(checkForInstanceOfBattleShooter(list)) {
+					buttonList.get(i).setBackgroundBattleShooter();
 				}
 			}
 			else {
@@ -67,6 +73,14 @@ public class RenderButtons {
 		        }
 		    }
 		    return false;
+	}
+	
+	public static void resetGrid() {
+		ArrayList<GameButton> buttonList = MainGui.getButtonList();
+		
+		for(int i = 0; i < buttonList.size(); i++) {
+			buttonList.get(i).setBackgroundNull();
+		}
 	}
 	
 }

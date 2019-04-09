@@ -21,13 +21,16 @@ public class GameButton extends JButton implements ActionListener{
 	
 	public GameButton() {
 		btnIndex = numberOfGameButtons++;
+		masterShip = new ImageIcon(this.getClass().getResource("/swResources/masterShip100.png"));
+		battleStar = new ImageIcon(this.getClass().getResource("/swResources/battleStar100.png"));
+		battleShooter = new ImageIcon(this.getClass().getResource("/swResources/battleShooter100.png"));
+		battleCruiser = new ImageIcon(this.getClass().getResource("/swResources/battleCruiser100.png"));
 		this.possibleMoves = PossibleGridMovements.getPossibleMoves(btnIndex);
 		addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("Button Clicked");
 		Spaceship player = PlayGame.getPlayer();
 		int currentPlayerLocation = player.getCurrentLocation();
 		boolean isMovePossible = PossibleGridMovements.isMovePossible(currentPlayerLocation, possibleMoves);
@@ -37,6 +40,7 @@ public class GameButton extends JButton implements ActionListener{
 			PlayGame.setUsersGo(false);
 			GridList gridList = PlayGame.getGridList();
 			gridList.movePlayer(player, btnIndex);
+			gridList.checkForEngagement(player);
 			RenderButtons.mapButtonGrid();
 			PlayGame.computersGo();
 		}
@@ -45,6 +49,21 @@ public class GameButton extends JButton implements ActionListener{
 	
 	public void setTileBackground(ImageIcon img) {
 		setIcon(img);
+	}
+	public void setBackgroundMasterShip() {
+		setIcon(masterShip);
+	}
+	public void setBackgroundBattleStar() {
+		setIcon(battleStar);
+	}
+	public void setBackgroundBattleCruiser() {
+		setIcon(battleCruiser);
+	}
+	public void setBackgroundBattleShooter() {
+		setIcon(battleShooter);
+	}
+	public void setBackgroundNull() {
+		setIcon(null);
 	}
 	
 }

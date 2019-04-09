@@ -15,7 +15,7 @@ public class TileList implements MoveShips {
 		id = numberOfTileLists++;
 		tileList = new ArrayList<Spaceship>();
 	}
-
+	
 	@Override
 	public void addShipToTile(Spaceship ship) {
 		getTileList().add(ship);
