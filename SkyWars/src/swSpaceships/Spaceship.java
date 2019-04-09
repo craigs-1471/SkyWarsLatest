@@ -5,11 +5,11 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 
-public class Spaceship implements Observer {
+public abstract class Spaceship implements Observer {
 	
 	private String shipType;
-	private int currentLocation;
 	private ImageIcon img;
+	private int currentLocation;
 	private boolean isDestroyed;
 	
 	public Spaceship() {

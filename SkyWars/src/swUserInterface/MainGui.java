@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,10 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import swGameData.GridList;
+import swGameLogic.PlayGame;
 
 public class MainGui {
 
 	private JFrame frmSkyWars;
+	private static ArrayList<GameButton> buttonList;
+	/*
 	private static GameButton btnGameButton0;
 	private static GameButton btnGameButton1;
 	private static GameButton btnGameButton2;
@@ -33,6 +37,7 @@ public class MainGui {
 	private static GameButton btnGameButton13;
 	private static GameButton btnGameButton14;
 	private static GameButton btnGameButton15;
+	*/
 	private static JButton btnNewGame;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JLabel lblDifficulty;
@@ -79,10 +84,14 @@ public class MainGui {
 		pnlButtonPanel.setBounds(12, 13, 647, 375);
 		frmSkyWars.getContentPane().add(pnlButtonPanel);
 		pnlButtonPanel.setLayout(new GridLayout(4, 4, 0, 0));
-		
+
 		int gridLength = GridList.getGridLength();
+		buttonList = new ArrayList<GameButton>(gridLength);
 		for(int i = 0; i < gridLength; i++) {
-			pnlButtonPanel.add(new GameButton());
+			buttonList.add(new GameButton());
+		}
+		for(int i = 0; i < gridLength; i++) {
+			pnlButtonPanel.add(buttonList.get(i));
 		}
 		
 		JPanel pnlOptionsPanel = new JPanel();
@@ -93,7 +102,7 @@ public class MainGui {
 		btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.playGame();
+				PlayGame.playGame();
 			}
 		});
 		btnNewGame.setBounds(12, 13, 97, 25);
@@ -168,4 +177,75 @@ public class MainGui {
 		pnlOptionsPanel.add(rdbtnEasyMode);
 	}
 
+	public JFrame getFrmSkyWars() {
+		return frmSkyWars;
+	}
+
+	public void setFrmSkyWars(JFrame frmSkyWars) {
+		this.frmSkyWars = frmSkyWars;
+	}
+
+	public static ArrayList<GameButton> getButtonList() {
+		return buttonList;
+	}
+
+	public static void setButtonList(ArrayList<GameButton> buttonList) {
+		MainGui.buttonList = buttonList;
+	}
+
+	public static JButton getBtnNewGame() {
+		return btnNewGame;
+	}
+
+	public static void setBtnNewGame(JButton btnNewGame) {
+		MainGui.btnNewGame = btnNewGame;
+	}
+
+	public JLabel getLblDifficulty() {
+		return lblDifficulty;
+	}
+
+	public void setLblDifficulty(JLabel lblDifficulty) {
+		this.lblDifficulty = lblDifficulty;
+	}
+
+	public static JRadioButton getRdbtnHardMode() {
+		return rdbtnHardMode;
+	}
+
+	public static void setRdbtnHardMode(JRadioButton rdbtnHardMode) {
+		MainGui.rdbtnHardMode = rdbtnHardMode;
+	}
+
+	public static JRadioButton getRdbtnEasyMode() {
+		return rdbtnEasyMode;
+	}
+
+	public static void setRdbtnEasyMode(JRadioButton rdbtnEasyMode) {
+		MainGui.rdbtnEasyMode = rdbtnEasyMode;
+	}
+
+	public static JRadioButton getRdbtnOffensive() {
+		return rdbtnOffensive;
+	}
+
+	public static void setRdbtnOffensive(JRadioButton rdbtnOffensive) {
+		MainGui.rdbtnOffensive = rdbtnOffensive;
+	}
+
+	public static JRadioButton getRdbtnDefensive() {
+		return rdbtnDefensive;
+	}
+
+	public static void setRdbtnDefensive(JRadioButton rdbtnDefensive) {
+		MainGui.rdbtnDefensive = rdbtnDefensive;
+	}
+
+	public ButtonGroup getButtonGroup() {
+		return buttonGroup;
+	}
+
+	public ButtonGroup getButtonGroup_1() {
+		return buttonGroup_1;
+	}
 }

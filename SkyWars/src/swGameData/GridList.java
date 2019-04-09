@@ -23,11 +23,18 @@ public class GridList implements Observable {
 	}
 	
 	@Override
-	public void addPlayer() {
-		Spaceship player = new MasterShip();
+	public void addPlayer(Spaceship player) {
 		int newLocation = getNewLocation();
 		getGridList().get(newLocation).addShipToTile(player);
 		player.updateLocation(newLocation);
+	}
+	
+	@Override
+	public void movePlayer(Spaceship player, int btnIndex) {
+		int currentLocation = player.getCurrentLocation();
+		getGridList().get(currentLocation).removeShipFromTile(player);		
+		getGridList().get(btnIndex).addShipToTile(player);
+		player.updateLocation(btnIndex);
 	}
 	
 	@Override
