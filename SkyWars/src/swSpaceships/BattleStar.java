@@ -1,11 +1,18 @@
 package swSpaceships;
 
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
 
 import swInterfaces.NewShip;
 
-public class BattleStar extends Spaceship implements NewShip {
+public class BattleStar extends Spaceship implements NewShip, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public BattleStar() {
 		addNewShipType();
 		setEnemy(true);

@@ -1,12 +1,17 @@
 package swSpaceships;
 
+import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.ImageIcon;
 
-public abstract class Spaceship implements Observer {
+public abstract class Spaceship implements Observer, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String shipType;
 	private ImageIcon img;
 	private int currentLocation;

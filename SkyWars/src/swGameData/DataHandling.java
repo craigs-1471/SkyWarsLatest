@@ -1,8 +1,10 @@
 package swGameData;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -38,7 +40,34 @@ public class DataHandling {
 	}
 	
 	public static void loadGame() {
-		
+		String fileName = "data.bin";
+		SaveData save = null;
+		try {
+			ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
+			save = (SaveData) is.readObject();
+			is.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Load complete");
+		PlayGame.loadGameData(save);
+	}
+
+	public static GridList loadGridList(SaveData save) {
+		GridList gridList = PlayGame.getGridList();
+		System.out.println("Okay up till here");
+		gridList.clearGridList();
+		ArrayList<Spaceship> enemies = save.getEnemies();
+		Spaceship player = save.getPlayer();
+		gridList.addExistingSpaceship(player);
+		for(int i = 0; i < enemies.size(); i++) {
+			gridList.addExistingSpaceship(enemies.get(i));
+		}
+		return gridList;
 	}
 	
 }

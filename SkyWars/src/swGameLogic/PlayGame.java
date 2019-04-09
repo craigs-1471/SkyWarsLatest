@@ -5,7 +5,9 @@ import java.util.Random;
 
 import javax.swing.JRadioButton;
 
+import swGameData.DataHandling;
 import swGameData.GridList;
+import swGameData.SaveData;
 import swSpaceships.MasterShip;
 import swSpaceships.Spaceship;
 import swUserInterface.MainGui;
@@ -14,7 +16,7 @@ import swUserInterface.RenderButtons;
 public class PlayGame {
 	
 	private static final int GRID_LENGTH = 16;
-	private static GridList gridList;
+	private static GridList gridList = new GridList();
 	private static Spaceship player;
 	private static boolean gameOver;
 	private static boolean usersGo;
@@ -50,7 +52,7 @@ public class PlayGame {
 	}
 	
 	public static void initialiseVariables() {
-		gridList = new GridList();
+		//gridList = new GridList();
 		player = new MasterShip();
 		gameOver = false;
 		usersGo = true;
@@ -66,6 +68,20 @@ public class PlayGame {
 		rdbtnHardMode.setSelected(isHardMode());
 		shipsDestroyed = 0;
 		goesTaken = 0;
+	}
+	
+	public static void loadGameData(SaveData save) {
+		System.out.println("pre load gridlist");
+		gridList = DataHandling.loadGridList(save);
+		System.out.println("pre loadplayer");
+		player = save.getPlayer();
+		gameOver = false;
+		usersGo = true;
+		masterShipOffensive = save.isMasterShipOffensive();
+		hardMode = save.isHardMode();
+		shipsDestroyed = save.getShipsDestroyed();
+		goesTaken = save.getGoesTaken();
+		RenderButtons.mapButtonGrid();
 	}
 	
 	///////////GETTERS AND SETTERS/////////////////////////////////

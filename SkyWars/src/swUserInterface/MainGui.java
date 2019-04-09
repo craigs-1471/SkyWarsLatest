@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import swGameData.DataHandling;
 import swGameData.GridList;
 import swGameLogic.PlayGame;
 
@@ -115,7 +116,7 @@ public class MainGui {
 		JButton btnSaveGame = new JButton("Save Game");
 		btnSaveGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.saveGame();
+				DataHandling.saveGame();
 			}
 		});
 		btnSaveGame.setBounds(12, 53, 97, 25);
@@ -124,7 +125,7 @@ public class MainGui {
 		JButton btnLoadGame = new JButton("Load Game");
 		btnLoadGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameData.loadGame();
+				DataHandling.loadGame();
 			}
 		});
 		btnLoadGame.setBounds(122, 13, 97, 25);

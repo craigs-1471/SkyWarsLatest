@@ -1,11 +1,16 @@
 package swGameData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import swSpaceships.Spaceship;
 
-public class SaveData {
+public class SaveData implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Spaceship player;
 	private ArrayList<Spaceship> enemies;
 	private int shipsDestroyed;

@@ -138,9 +138,17 @@ public class GridList implements Observable {
 	}
 
 	@Override
-	public void addSpaceship(Spaceship newShip) {
+	public void addNewSpaceship(Spaceship newShip) {
 		gridList.get(ENEMY_START_LOCATION).getTileList().add(newShip);	
 		enemies.add(newShip);
+	}
+	
+	public void addExistingSpaceship(Spaceship ship) {
+		int existingLocation = ship.getCurrentLocation();
+		gridList.get(existingLocation).getTileList().add(ship);	
+		if(ship.isEnemy()) {
+			enemies.add(ship);
+		}
 	}
 	
 	public void createNewSpaceship() {
@@ -149,15 +157,15 @@ public class GridList implements Observable {
 		int randomNumber = numGenerator.nextInt(typesOfShip);
 		if(randomNumber == 0) {
 			Spaceship newShip = new BattleStar();
-			addSpaceship(newShip);
+			addNewSpaceship(newShip);
 		}
 		else if(randomNumber == 1) {
 			Spaceship newShip = new BattleCruiser();
-			addSpaceship(newShip);
+			addNewSpaceship(newShip);
 		}
 		else {
 			Spaceship newShip = new BattleShooter();
-			addSpaceship(newShip);
+			addNewSpaceship(newShip);
 		}
 	}
 	
